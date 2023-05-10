@@ -5,9 +5,9 @@ from flask import *
 from flask_cors import CORS
 import config
 
-
 app = Flask(__name__)
-CORS(app) 
+CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type' 
 
 def fetch_answer(question,docs):
 # Text completion API
