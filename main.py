@@ -7,7 +7,6 @@ import config
 
 app = Flask(__name__)
 CORS(app, , support_credentials=True)
-app.config['CORS_HEADERS'] = 'Content-Type' 
 
 def fetch_answer(question,docs):
 # Text completion API
@@ -31,4 +30,4 @@ def upload_file():
     return {"answer":answer}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=8000)
