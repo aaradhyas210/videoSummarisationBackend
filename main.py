@@ -6,7 +6,7 @@ from flask_cors import CORS
 import config
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, , support_credentials=True)
 app.config['CORS_HEADERS'] = 'Content-Type' 
 
 def fetch_answer(question,docs):
@@ -23,13 +23,12 @@ def fetch_answer(question,docs):
     
 
 @app.route('/fileupload', methods=['POST'])
+@cross_origin(origin='*', supports_credentials=True)
 def upload_file():
     file = request.files['file']
     question = request.form['question']
     answer = fetch_answer(question,file)
-    response = make_response(answer)
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
+    return {"answer":answer}
 
 if __name__ == '__main__':
     app.run(debug=True)
