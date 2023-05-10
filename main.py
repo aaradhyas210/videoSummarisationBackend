@@ -27,7 +27,9 @@ def upload_file():
     file = request.files['file']
     question = request.form['question']
     answer = fetch_answer(question,file)
-    return {'answer' : answer}
+    response = make_response(answer)
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)
