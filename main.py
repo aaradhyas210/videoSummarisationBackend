@@ -11,7 +11,7 @@ CORS(app)
 
 def fetch_answer(question,docs):
 # Text completion API
-    openai.api_key = config.API_KEY
+    openai.api_key = process.env.API_KEY
     response = openai.Completion.create(
     model="text-davinci-003",
     prompt=f"{docs}\n\nQ: {question}\nA:",
