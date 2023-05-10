@@ -3,6 +3,7 @@ from distutils.log import debug
 from fileinput import filename
 from flask import *
 from flask_cors import CORS
+import config
 
 
 app = Flask(__name__)
@@ -10,7 +11,7 @@ CORS(app)
 
 def fetch_answer(question,docs):
 # Text completion API
-    openai.api_key = "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"
+    openai.api_key = config.API_KEY
     response = openai.Completion.create(
     model="text-davinci-003",
     prompt=f"{docs}\n\nQ: {question}\nA:",
